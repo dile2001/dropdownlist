@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Dropdown from './Dropdown/dropdown.js';
+import Dropdown from '../Dropdown/dropdown.js';
 
 const airports = [
     { label: "Dubai", key: "DXB" },

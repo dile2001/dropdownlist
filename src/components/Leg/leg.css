@@ -1,0 +1,10 @@
+.leg{
+    display: table-row;
+}
+.cell{
+    display: table-cell;
+}
+.label{
+    width:auto;
+    vertical-align: middle;
+}
