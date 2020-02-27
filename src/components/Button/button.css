@@ -1,0 +1,12 @@
+.redbutton{
+    color: rgb(255, 255, 255);
+    display: block;
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    min-width: 78px !important;
+    padding: 12px 15px;
+    background: none 0px 0px repeat scroll rgb(179, 44, 45);
+  }
