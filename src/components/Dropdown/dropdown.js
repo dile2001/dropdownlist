@@ -57,9 +57,7 @@ class Dropdown extends Component{
         const{listOpen, headerTitle} = this.state
         return (
             <div className="dd-wrapper" id={this.state.id}>
-                <div className="blue-outline" onClick={() => this.toggleList()}>
-                    <div className="dd-header-title">{this.state.selectedKey? list.find(x=> x.key ==this.state.selectedKey).label : headerTitle}</div>
-                </div>
+                <input className="blue-outline" onClick={() => this.toggleList()} value={this.state.selectedKey? list.find(x=> x.key ==this.state.selectedKey).label : headerTitle} />
                 {listOpen && <ul className="suggestion">
                     {list.map((item) => (
                     <li className={item.key ==this.state.selectedKey? "selected list-item" : "list-item"} onClick={() => this.selectItem(item.label,item.key)} key={item.key} > {item.label}</li>
