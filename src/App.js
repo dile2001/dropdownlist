@@ -47,7 +47,7 @@ class App extends React.Component{
   render() {
     return (
       <div  className="App-legs">
-        <div id="trip" class="trip">{this.legsInStr? this.legsInStr : "You have no trips, click New to enter your trip"} 
+        <div id="trip" className="trip">{this.legsInStr? this.legsInStr : "You have no trips, click New to enter your trip"} 
         
         <div>
         <Button text={this.legsInStr?"Edit": "New"} handlerClick={this.editHandler} className="redbutton"/>
