@@ -1,3 +1,7 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
 .suggestion{
     box-sizing: border-box;
     border: 1px solid ButtonShadow;
@@ -5,6 +9,12 @@
     position: absolute;
     overflow: auto;
     margin-left: 1px;
+    margin: 0 0 0 10px;
+    
+    z-index: 1000;
+    width: 280px;
+  
+    
 }
 .blue-outline{
     color: #757575;
@@ -23,4 +33,12 @@ input.blue-outline{
     min-height: 1px;
     position: relative;
     float: left;
+}
+.list-item{
+    list-style: none;
+    padding: 12px 0 12px 12px;
+    margin: 0;
+}
+.Error{
+    color: red;
 }

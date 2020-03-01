@@ -28,7 +28,7 @@
     transform: translatex(-50%);
 }
 .ts-icon-close {
-    background: url(/Images/ek-icn-close-popup.svg) no-repeat center/12px;
+    background: url(/Images/Close-icon.png) no-repeat center/24px;
     right: 9px;
     top: 10px;
     z-index: 2;

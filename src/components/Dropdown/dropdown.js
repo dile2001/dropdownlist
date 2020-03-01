@@ -54,10 +54,12 @@ class Dropdown extends Component{
       }
     render(){
         const{list} = this.props
-        const{listOpen, headerTitle} = this.state
+        const{listOpen, headerTitle} = this.state;
+        
         return (
             <div className="dd-wrapper" id={this.state.id}>
                 <input className="blue-outline" onClick={() => this.toggleList()} value={this.state.selectedKey? list.find(x=> x.key ==this.state.selectedKey).label : headerTitle} />
+                <div class="Error" > {this.props.error}</div>
                 {listOpen && <ul className="suggestion">
                     {list.map((item) => (
                     <li className={item.key ==this.state.selectedKey? "selected list-item" : "list-item"} onClick={() => this.selectItem(item.label,item.key)} key={item.key} > {item.label}</li>

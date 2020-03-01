@@ -6,8 +6,9 @@ import Button from './components/Button/button.js';
 class App extends React.Component{
   constructor(){
     super();
-    this.state = {legs:[],legsInStr: ""};
+    this.state = {legs:[]};
     this.saveLegs = this.saveLegs.bind(this);
+    this.legsInStr = "";
   }
   toggleSelected(id, key){
     let temp = this.state[key]
@@ -23,9 +24,10 @@ class App extends React.Component{
   
   editHandler = () => {
     document.querySelector('#legs').style.display = "";
-    document.querySelector('#trip').style.display = "none";
+    
 
   }
+  
   concatLegs = function(legs){
     var ret = "";
     if(legs) {
@@ -34,11 +36,9 @@ class App extends React.Component{
     return ret;
   }
   saveLegs = (legs) => {
-    const c = this.concatLegs(legs);
+    this.legsInStr = this.concatLegs(legs);
     this.setState(
-      {legs: legs,
-        legsInStr: c
-      }
+      {legs: legs}
     );
     document.querySelector('#legs').style.display = "none";
     document.querySelector('#trip').style.display = "";
@@ -47,15 +47,15 @@ class App extends React.Component{
   render() {
     return (
       <div  className="App-legs">
-        <div id="trip">{this.state.legsInStr? this.state.legsInStr : "You have no trips, click New to enter your trip"} 
-        <Button text={this.state.legsInStr?"Edit": "New"} handlerClick={this.editHandler} className="redbutton"/></div>
-        <div id="legs" className="legsdialog">
-          <div className="ts-mask"></div>
-         
-            <LegsDialog legs={this.state.legs} saveLegs={this.saveLegs} />
-          
+        <div id="trip" class="trip">{this.legsInStr? this.legsInStr : "You have no trips, click New to enter your trip"} 
+        
+        <div>
+        <Button text={this.legsInStr?"Edit": "New"} handlerClick={this.editHandler} className="redbutton"/>
         </div>
-      </div>
+        </div>
+        <LegsDialog legs={this.state.legs} saveLegs={this.saveLegs}  />
+      </div>    
+     
     );
   }
 }

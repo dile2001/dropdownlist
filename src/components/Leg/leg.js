@@ -6,9 +6,9 @@ const Leg = (props) => {
         return (
             <div className="leg">
                 <div className="cell label">From:</div> 
-                <div className="cell"><AirportDropdown selectedKey={props.fromKey} onChanged={props.onChanged} id={props.id}/></div>
+                <div className="cell"><AirportDropdown selectedKey={props.fromKey} error={props.fromError} onChanged={props.onChanged} id={props.id}/></div>
                 <div className="cell label">  To:</div>
-                <div className="cell"> <AirportDropdown selectedKey={props.toKey} onChanged={props.onChanged} id={props.id+1}/></div>
+                <div className="cell"> <AirportDropdown selectedKey={props.toKey} error={props.toError} onChanged={props.onChanged} id={props.id+1}/></div>
             </div>
         )
 }

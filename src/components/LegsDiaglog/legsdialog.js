@@ -2,55 +2,85 @@ import React from 'react';
 import Button from '../Button/button.js';
 import Leg from '../Leg/leg';
 import './legsdialog.css';
+import { validate } from '@babel/types';
 
 class LegsDialog extends React.Component {
+    
     constructor(props){
         super(props);
         this.state = {
             legs: this.props.legs.length? this.props.legs : ["",""],
+            valid:true,
+            legstmp:this.props.legs.length? this.props.legs : ["",""]
         }
         this.addLeg = this.addLeg.bind(this);
         this.saveLegs = this.saveLegs.bind(this);
         this.onChanged= this.onChanged.bind(this);
+        this.closeDialog= this.closeDialog.bind(this);
+        this.legstmp = this.props.legs;
        
     }
     onChanged = (key,id) => {
-        var legstemp = this.state.legs;
-        legstemp[id] = key;
+        var tmp = this.state.legstmp;
+        tmp[id] = key;
         this.setState({
-            legs:legstemp
+            legstmp:tmp
         })
     }
-    
+    closeDialog = ()=>{
+        document.getElementById("legs").style.display="none";
+        this.setState({
+            legstmp:this.state.legs
+        })
+        
+    }
     saveLegs = () => {
-        this.props.saveLegs(this.state.legs);
+        if(this.validate()){
+            this.state.legs = this.state.legstmp;
+            this.props.saveLegs(this.state.legs);
+        }
+        else{
+            this.setState({
+                valid:false
+            });
+        }
+    }
+    validate = ()=> {
+        return !this.state.legstmp.some(x=> x=="");
     }
     addLeg = () => {
-        this.state.legs.push("");
-        this.state.legs.push("");
-        this.setState({legs: this.state.legs});
+        this.state.legstmp.push("");
+        this.state.legstmp.push("");
+        this.setState({legstmp: this.state.legstmp});
     }
     render(){
         let i = 0;
         let legs = [];
-        while(i<this.state.legs.length){
-            legs.push(<Leg fromKey={this.state.legs[i]} toKey={this.state.legs[i+1]} id={i} key={i} onChanged={this.onChanged} />);
+        while(i<this.state.legstmp.length){
+            legs.push(<Leg fromKey={this.state.legstmp[i]} toKey={this.state.legstmp[i+1]} id={i} key={i} onChanged={this.onChanged} 
+                fromError={!this.state.valid && !this.state.legstmp[i] ? "Please select departure airport " : ""} 
+                toError={!this.state.valid && !this.state.legstmp[i+1] ? "Please select arrival airport" : ""}
+                />);
             i=i+2;
         }
+        this.state.valid=true;
         return (
-            <div className="content">
-                <div className="legs">
-                {
-                    legs.map(x =>{ return x;})
-                }
+            <div id="legs" className="legsdialog">
+                <div className="ts-mask"></div>
+                <div className="content">
+                    <div className="legs">
+                    {
+                        legs.map(x =>{ return x;})
+                    }
+                    </div>
+                    <div className="dialogbutton">
+                        <Button text="Add Leg" handlerClick={this.addLeg} className="redbutton"/> 
+                        <Button text="Save"  handlerClick={this.saveLegs} className="redbutton"/>
+                    </div>
+                    <Button className="ts-icon-close" handlerClick={this.closeDialog} data-ek-id="ek-modal-close" />
                 </div>
-                <div className="dialogbutton">
-                    <Button text="Add Leg" handlerClick={this.addLeg} className="redbutton"/> 
-                    <Button text="Save"  handlerClick={this.saveLegs} className="redbutton"/>
-                </div>
-                <button className="ts-icon-close" data-ek-id="ek-modal-close" role="link">
-                </button>
             </div>
+            
         )
     }
 }

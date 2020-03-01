@@ -11,6 +11,6 @@ const airports = [
   ];
   
 const AirportDropdown = (props) => {
-    return ( <Dropdown list={airports} title="Select airport" id={props.id} selectedKey={props.selectedKey} onChanged={props.onChanged}/>)
+    return ( <Dropdown list={airports} title="Select airport" error={props.error} id={props.id} selectedKey={props.selectedKey} onChanged={props.onChanged}/>)
 }
 export default AirportDropdown;
