@@ -11,8 +11,8 @@ class Dropdown extends Component{
             selectedKey: this.props.selectedKey,
             
         }
-        this.close = this.close.bind(this);
-        this.selectItem = this.selectItem.bind(this);
+        
+        
     }
     handleClickOutside(){
         this.setState({
@@ -34,7 +34,7 @@ class Dropdown extends Component{
         window.removeEventListener('click', this.close)
     }
     
-    close(timeOut){
+    close = () => {
         this.setState({
           listOpen: false
         })
@@ -45,7 +45,7 @@ class Dropdown extends Component{
           listOpen: !prevState.listOpen
         }))
     }
-    selectItem(title,key){
+    selectItem = (title,key) => {
         this.setState({
           headerTitle: title,
           listOpen: false

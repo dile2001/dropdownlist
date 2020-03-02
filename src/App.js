@@ -7,7 +7,7 @@ class App extends React.Component{
   constructor(){
     super();
     this.state = {legs:[]};
-    this.saveLegs = this.saveLegs.bind(this);
+    
     this.legsInStr = "";
   }
   toggleSelected(id, key){

@@ -13,10 +13,9 @@ class LegsDialog extends React.Component {
             valid:true,
             legstmp:this.props.legs.length? this.props.legs : ["",""]
         }
-        this.addLeg = this.addLeg.bind(this);
-        this.saveLegs = this.saveLegs.bind(this);
-        this.onChanged= this.onChanged.bind(this);
-        this.closeDialog= this.closeDialog.bind(this);
+        
+        
+        
         this.legstmp = this.props.legs;
        
     }
@@ -69,9 +68,7 @@ class LegsDialog extends React.Component {
                 <div className="ts-mask"></div>
                 <div className="content">
                     <div className="legs">
-                    {
-                        legs.map(x =>{ return x;})
-                    }
+                    {legs}
                     </div>
                     <div className="dialogbutton">
                         <Button text="Add Leg" handlerClick={this.addLeg} className="redbutton"/> 
