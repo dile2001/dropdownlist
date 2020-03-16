@@ -23,9 +23,9 @@
     box-sizing: border-box;
 
     margin: auto;
-    position: absolute;
-    left: 50%;
-    transform: translatex(-50%);
+    position: relative;
+    left: 100px;
+    /*transform: translatex(-50%);*/
 }
 .ts-icon-close {
     background: url(/Images/Close-icon.png) no-repeat center/24px;
@@ -39,4 +39,9 @@
     cursor: pointer;
     border: 0;
     padding: 16px;
+}
+.legsdialog {
+    position:fixed;
+    top:0;
+    left:0;
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Dropdown from '../Dropdown/dropdown.js';
 
 const airports = [
@@ -11,6 +11,6 @@ const airports = [
   ];
   
 const AirportDropdown = (props) => {
-    return ( <Dropdown list={airports} title="Select airport" error={props.error} id={props.id} selectedKey={props.selectedKey} onChanged={props.onChanged}/>)
+    return ( <Dropdown list={airports} dkey={props.dkey} key={props.dkey} title="Select airport" error={props.error} id={props.id} selectedKey={props.selectedKey} onChanged={props.onChanged}/>)
 }
 export default AirportDropdown;

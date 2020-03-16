@@ -2,22 +2,44 @@ import React, { Component } from 'react';
 import './dropdown.css';
 
 class Dropdown extends Component{
+    //header = "";
+
     constructor(props){
         super(props)
         this.state = {
-            
-            headerTitle: this.props.title, 
             listOpen: false,
-            selectedKey: this.props.selectedKey,
             
         }
-        
-        
+        this.header= this.props.title;
+        this.selected = this.props.selectedKey;
+
     }
+
+    // static getDerivedStateFromProps(props, state) {
+    //     // Any time the current user changes,
+    //     // Reset any parts of state that are tied to that user.
+    //     // In this simple example, that's just the email.
+    //     if (props.title !== state.headerTitle) {
+    //       return {
+    //         headerTitle: props.title,
+    //         //selectedKey: props.selectedKey
+    //       };
+    //     }
+    //     return null;
+    //   }
     handleClickOutside(){
         this.setState({
           listOpen: false
         })
+    }
+    componentDidMount(){
+        this.setState({
+            
+            
+            listOpen: false
+            
+            
+        });
     }
     componentDidUpdate(){
         const { listOpen } = this.state
@@ -31,12 +53,14 @@ class Dropdown extends Component{
         }, 0)
     }
     componentWillUnmount(){
-        window.removeEventListener('click', this.close)
+        window.removeEventListener('click', this.close);
+         
     }
     
     close = () => {
         this.setState({
           listOpen: false
+       
         })
     }
 
@@ -46,20 +70,23 @@ class Dropdown extends Component{
         }))
     }
     selectItem = (title,key) => {
+        this.header = title;
+        this.selected=key;
         this.setState({
-          headerTitle: title,
           listOpen: false
         });//, this.props.resetThenSet(key, stateKey))
+        
         this.props.onChanged(key,this.props.id);
       }
     render(){
-        const{list} = this.props
-        const{listOpen, headerTitle} = this.state;
+        const {list} = this.props
+        const {listOpen} = this.state;
         
         return (
-            <div className="dd-wrapper" id={this.state.id}>
-                <input className="blue-outline" onClick={() => this.toggleList()} value={this.state.selectedKey? list.find(x=> x.key ==this.state.selectedKey).label : headerTitle} />
-                <div class="Error" > {this.props.error}</div>
+            <div className="dd-wrapper" id={this.state.id} >
+                <input className="blue-outline" onClick={() => this.toggleList()} 
+                value={this.selected? list.find(x=> x.key ==this.selected).label : this.header} readOnly={true}/>
+                <div className="Error" > {this.props.error}</div>
                 {listOpen && <ul className="suggestion">
                     {list.map((item) => (
                     <li className={item.key ==this.state.selectedKey? "selected list-item" : "list-item"} onClick={() => this.selectItem(item.label,item.key)} key={item.key} > {item.label}</li>
